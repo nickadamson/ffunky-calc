@@ -1,0 +1,224 @@
+@import url('https://rsms.me/inter/inter.css');
+html { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+
+:root {
+  --border-radius: .5em;
+  --font-size: 3vmin;
+  --padding-auto: 4vmin;
+  --tinypadding-auto: 1.5vmin;
+  --page-bgcolor1: #edd55a;
+  --page-bgcolor2: #fd7d50;
+  --gray-0: rgb(10, 10, 10);
+  --gray-1: rgb(20, 20, 20);
+  --gray-2: rgb(30, 30, 30);
+  --gray-3: rgb(40, 40, 40);
+  --gray-4: rgb(60, 60, 60);
+  --gray-5: rgb(80, 80, 80);
+  --gray-6: rgb(100, 100, 100);
+  --white-1: rgb(200, 200, 200);
+  --min-width: 20%;
+  --max-width: 50%;
+  --min-height: 50%;
+  --max-height: 80%;
+}
+
+/* @media (max-width: 800px),
+(max-height: 800px) {
+  :root {
+    --font-size: 10px;
+    --min-width: 0%;
+    --max-width: 200%;
+    --min-height: 0%;
+    --max-height: 200%;
+  }
+
+  html {
+    font-size: 1em;
+  }
+
+  .gridContainer #zero {
+    text-indent: .55rem;
+  }
+} */
+
+* {
+  box-sizing: border-box;
+  color: var(--white-1);
+}
+
+html {
+  background: linear-gradient(30deg, var(--page-bgcolor1), var(--page-bgcolor2));
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  font-size: var(--font-size);
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+.calculator {
+  background-color: var(--gray-2);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  border-radius: var(--border-radius);
+  padding: 1em;
+  box-shadow: 0em 0em 2em .5em rgba(10, 10, 10, .75);
+  }
+
+.resultsBox {
+  border-radius: var(--border-radius);
+  display: grid;
+  grid-template-rows: .5em 3em;
+  background-color: var(--gray-2);
+  /* cursor: pointer; */
+  height: min-content;
+  position: relative;
+  left: .4em;
+  max-width: calc(6vmin + calc(4 * calc(2 * 1.2em)));
+  margin-bottom: .5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resultsBox #lastFormula {
+  font-size: .5em;
+  grid-row: 1;
+  padding-right: 7%;
+  text-align: right;
+  font-weight: 300;
+  color: #ecd1b5;
+}
+
+.resultsBox #results {
+  padding-right: 6%;
+  text-align: right;
+  grid-row: 2;
+  font-weight: 700;
+  color: #f18c23;
+  text-overflow: clip;
+}
+
+.userInput {
+  border-radius: .5em;
+  display: flex;
+  background-color: var(--gray-5);
+  align-self: center;
+  justify-content: flex-end;
+  max-width: 94%;
+  position: relative;
+  margin-bottom: .5em;
+}
+
+.userInput input {
+  background: transparent;
+  border: hidden;
+  line-height: 1.75em;
+  max-width: 90%;
+  outline: 0;
+  font-size: var(--font-size);
+  cursor: text;
+  text-align: right;
+  position: relative;
+  right: .7em;
+  /* resize: both; */
+}
+
+.userInput input:active {
+  border: hidden;
+}
+
+.gridContainer {
+  background-color: var(--gray-2);
+  display: grid;
+  grid-template-columns: repeat(4, calc(2 * 1.2em));
+  grid-template-rows: repeat(5, calc(2 * 1.2em));
+  justify-content: center;
+  align-content: center;
+  border-radius: var(--border-radius);
+  padding: var(--tinypadding-auto);
+  gap: 2vmin;
+}
+
+.btn {
+  font-size: calc(1em / 1.4);
+  justify-self: normal;
+  /* outline-style: none; */
+  border-radius: var(--border-radius);
+  border: hidden;
+  background-color: rgba(0, 0, 0, .2);
+  /* padding: var(--tinypadding-auto); */
+}
+
+.btn.numbtn {
+  font-weight: 700;
+}
+
+.btn#clear {
+  font-weight: 800;
+}
+
+/* Author: Shounak Das, https://codepen.io/dasshounak/pen/rNMjmaO */
+.flat {
+  height: auto;
+  width: auto;
+  /* border-radius: var(--border-radius); */
+  background: var(--gray-2);
+  box-shadow:
+    -.1rem -.1rem .1rem var(--gray-3),
+    .15rem .15rem .3rem var(--gray-1);
+}
+
+.convex {
+  height: auto;
+  width: auto;
+  /* border-radius: 50%; */
+  background: var(--gray-3);
+  box-shadow:
+    /* -.1rem -.1rem .1rem var(--gray-4), */
+    .15rem .15rem .3rem var(--gray-1),
+    inset -.1rem -.1rem .1rem var(--gray-2),
+    inset .1rem .1rem .1rem var(--gray-5);
+}
+
+.concave {
+  height: auto;
+  width: auto;
+  background: var(--gray-1);
+  box-shadow: 
+    inset -.2rem -.2rem .2rem var(--gray-3),
+    inset .2rem .2rem .5rem var(--gray-0);
+}
+/* End Credit */
+
+.btn:hover{
+  background-color: rgba(0, 0, 0, .5);
+  cursor: pointer;
+}
+
+.btn.disabled {
+  background: rgba(53, 3, 3, 0.247);
+}
+
+.btn.active {
+  background:rgba(18, 58, 0, 0.582);
+}
+
+.gridContainer #clear {
+  grid-column: 1 / 4;
+}
+
+.gridContainer #zero {
+  grid-column: 1 / 3;
+}
